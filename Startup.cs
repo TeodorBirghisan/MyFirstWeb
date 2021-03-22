@@ -21,19 +21,15 @@ namespace MyFirstWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.Run(async (context) =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                await context.Response.WriteAsync(@"<h1>Internship Landpage</h1>
+                    <p>Here is our classroom</p>
+                        <ul>
+                        <li>Bogdan</li>
+                        <li>Teodor</li>
+                        <li>Gica Hagi</li>
+                        </ul>");
             });
         }
     }
