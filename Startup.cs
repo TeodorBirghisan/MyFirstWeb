@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace MyFirstWeb
@@ -22,7 +23,10 @@ namespace MyFirstWeb
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDefaultFiles();
-            app.UseStaticFiles();
+            StaticFileOptions options = new StaticFileOptions();
+            options.FileProvider = new PhysicalFileProvider(@"C:\\Users\\Teodor-OctavianBirgh\\Documents\\Workshops\\.Net\\MyFirstWeb\\Images\\");
+            options.RequestPath = new PathString("/Images");
+            app.UseStaticFiles(options);
         }
     }
 }
