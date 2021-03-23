@@ -26,6 +26,7 @@ namespace MyFirstWeb
             StaticFileOptions options = new StaticFileOptions();
             options.FileProvider = new PhysicalFileProvider(@"C:\\Users\\Teodor-OctavianBirgh\\Documents\\Workshops\\.Net\\MyFirstWeb\\Images\\");
             options.RequestPath = new PathString("/Images");
+            app.UseStaticFiles();
             app.UseStaticFiles(options);
         }
     }
