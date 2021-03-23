@@ -23,11 +23,18 @@ namespace MyFirstWeb
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDefaultFiles();
-            StaticFileOptions options = new StaticFileOptions();
-            options.FileProvider = new PhysicalFileProvider(@"C:\Users\Teodor-OctavianBirgh\Documents\Workshops\.Net\MyFirstWeb\Images\");
-            options.RequestPath = new PathString("/Images");
-            app.UseStaticFiles(options);
+            UseStaticFilesFromImageFolder(app);
             app.UseStaticFiles();
+        }
+
+        private static void UseStaticFilesFromImageFolder(IApplicationBuilder app)
+        {
+            var imageFolderName = "Images";
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider($"C:\\Users\\Teodor-OctavianBirgh\\Documents\\Workshops\\.Net\\MyFirstWeb\\{imageFolderName}\\"),
+                RequestPath = new PathString("/Images")
+            });
         }
     }
 }
