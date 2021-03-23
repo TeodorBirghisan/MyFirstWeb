@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -24,7 +25,9 @@ namespace MyFirstWeb
         {
             app.UseDefaultFiles();
             StaticFileOptions options = new StaticFileOptions();
-            options.FileProvider = new PhysicalFileProvider(@"C:\\Users\\Teodor-OctavianBirgh\\Documents\\Workshops\\.Net\\MyFirstWeb\\Images\\");
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string path = Path.Combine(currentDirectory, "Images");
+            options.FileProvider = new PhysicalFileProvider(path);
             options.RequestPath = new PathString("/Images");
             app.UseStaticFiles();
             app.UseStaticFiles(options);
